@@ -1,0 +1,60 @@
+extends ../layouts/default
+
+block head
+  title #{projectName}
+
+block neck
+  link(href='/views/timeline/index.css', rel='stylesheet')
+
+block body
+  section(style='background: #ffffff;')
+    .container
+      .row
+        .col-sm-12
+          h2(style='text-align: center; padding-bottom: 4%;') How to start a startup?
+    .container#timeline
+      .row
+        .col-lg-12
+          ul.timeline
+            li
+              .timeline-image
+                img.img-circle.img-responsive(src='/images/gallery/timeline-1.jpg', alt='')
+              .timeline-panel
+                .timeline-heading
+                  h4 Create a Landing Page
+                .timeline-body
+                  p.text-muted
+                    | The basic step is to simply create a web site that good enough.
+            li.timeline-inverted
+              .timeline-image
+                img.img-circle.img-responsive(src='/images/gallery/timeline-2.jpg', alt='')
+              .timeline-panel
+                .timeline-heading
+                  h4 Meet Smart People
+                .timeline-body
+                  p.text-muted
+                    | Startups often start around places that smart people meet each other.
+            li
+              .timeline-image
+                img.img-circle.img-responsive(src='/images/gallery/timeline-3.jpg', alt='')
+              .timeline-panel
+                .timeline-heading
+                  h4 Learn How to Program
+                .timeline-body
+                  p.text-muted
+                    | Get real way to learn how to code and build software prototype.
+            li.timeline-inverted
+              .timeline-image
+                img.img-circle.img-responsive(src='/images/gallery/timeline-4.jpg', alt='')
+              .timeline-panel
+                .timeline-heading
+                  h4 Get Co-founders
+                .timeline-body
+                  p.text-muted
+                    | Look for co-founders and build your team. Ideally between two or four founders.
+            li.timeline-inverted
+              .timeline-image
+                h4
+                  | Join the
+                  br
+                  | Adventure!

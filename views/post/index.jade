@@ -1,0 +1,143 @@
+extends ../layouts/default
+
+block head
+  title #{projectTitle} | #{projectName}
+
+block neck
+
+block feet
+  script(src='/views/post/index.js')
+
+block heading
+  .jumbotron
+    .container(style='margin-top: 30px;')
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            h1 免費課程網
+            div(style='margin-left: 20px;')
+              .fb-like(data-href='http://freecourses.tw', data-layout='button_count', data-action='like', data-show-faces='false', data-share='true')
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6(style='margin-top: 20px;')
+            span var freecourses = { 
+              br
+              &nbsp;&nbsp;&nbsp;&nbsp;"classroom": "免費教室課程",
+              br 
+              &nbsp;&nbsp;&nbsp;&nbsp;"online": "免費線上課程",
+              br
+              &nbsp;&nbsp;&nbsp;&nbsp;"conference": "免費講座與研討會"
+              br
+              &nbsp;};
+
+block body
+  section
+    .container
+      .pull-right
+        button.btn.btn-primary.btn-submit 回報免費課程
+
+  section
+    .container(style='margin-top: 30px;')
+      div#submit-form.hide
+
+  section
+    .container
+      table.table.table-striped#course-list
+        thead
+          tr
+            th 主辦單位
+            th 課程名稱
+            th 開課日期
+            th 張貼時間
+          for post in posts
+            tr
+              td #{post.organizer}&nbsp;
+                for tag in post.typeTags
+                  span.label.label-danger #{tag}
+                  &nbsp;
+              td 
+                a(href!='#{post.url}', target='_blank') #{post.title}
+              td #{post.startDate}
+              td #{post.date}
+
+  script(type='text/template', id='tmpl-post-item')
+    thead
+      tr
+        th 張貼時間
+        th 主辦單位
+        th 課程名稱
+        th 開課日期
+    <% _.each(data, function(post) { %>
+    tr
+      td <%= post.date %>
+      td <%= post.organizer %>&nbsp;
+        <% _.each(post.typeTags, function(tag) { %>
+        span.label.label-danger <%= tag %>
+        &nbsp;
+        <% }); %>
+      td 
+        a(href!='<%= post.url %>', target='_blank') <%= post.title %>
+      td <%= post.startDate %>
+    <% }); %>
+
+  script(type='text/template', id='tmpl-submit-form')
+    form.form-horizontal
+      fieldset
+        div.alerts
+          |<% _.each(errors, function(err) { %>
+          div.alert.alert-warning
+            a.close(href='#', data-dismiss='alert') &times;
+            strong 提示:&nbsp;
+            |<%= err %>
+          |<% }); %>
+          |<% if (success) { %>
+          div.alert.alert-info
+            a.close(href='#', data-dismiss='alert') &times;
+            strong 成功！
+            | 您回報的免費課程資訊已上線，謝謝。
+            a(href='/') 返回首頁
+          |<% } %>
+        |<% if (!success) { %>
+
+        legend 回報免費課程
+
+        .form-group(class!='<%= errfor.organizer ? "has-error" : "" %>')
+          label.col-md-2.control-label(for='orgaziner') 主辦單位
+          .col-md-6
+            input#organizer.form-control.input-md(name='organizer', type='text', placeholder='輸入主辦單位名稱', value!='<%= organizer %>')
+            span.help-block <%= errfor.organizer %>
+
+        .form-group(class!='<%= errfor.title ? "has-error" : "" %>')
+          label.col-md-2.control-label(for='title') 課程名稱
+          .col-md-6
+            input#organizer.form-control.input-md(name='title', type='text', placeholder='可直接 Copy & Paste 課程官方網站上的名稱', value!='<%= title %>')
+            span.help-block <%= errfor.title %>
+
+        .form-group(class!='<%= errfor.url ? "has-error" : "" %>')
+          label.col-md-2.control-label(for='url') 課程官方網址
+          .col-md-6
+            input#organizer.form-control.input-md(name='url', type='text', placeholder='課程的官方頁面網址', value!='<%= url %>')
+            span.help-block <%= errfor.url %>
+
+        .form-group(class!='<%= errfor.typeTags ? "has-error" : "" %>')
+          label.col-md-2.control-label(for='typeTags') 課程的類型
+          .col-md-6
+            select#selectbasic.form-control(name='typeTags')
+              option(value='classroom' selected) 免費教室課程
+              option(value='online') 免費線上課程
+              option(value='conference') 免費講座與研討會
+            span.help-block <%= errfor.typeTags %>
+
+        .form-group(class!='<%= errfor.startDate ? "has-error" : "" %>')
+          label.col-md-2.control-label(for='startDate') 開課日期
+          .col-md-6
+            .input-group
+              input#datepicker.form-control.input-md(name='startDate', type='text', value!='<%= startDate ? startDate : "" %>', data-date='', data-date-format='yyyy-mm-dd')
+              span.input-group-addon
+                i.fa.fa-info
+            span.help-block <%= errfor.startDate %>
+
+        .form-group
+          label.col-md-2.control-label(for='savePost') &nbsp;
+          .col-md-6
+            button#preview-post.btn.btn-primary(name='savePost', type='button') 預覽結果
+            button#save-post.btn.btn-default.btn-danger.hide(name='savePost', type='button', disabled='true') 送出
+
+        |<% } %>

@@ -1,0 +1,27 @@
+header
+  section#header
+    nav.navbar.navbar-barnaul(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#brn-navbar-collapse-1')
+            span.batch.icon32 &#xf0AA;
+          a.navbar-brand(href='/#top')
+            h2 Element
+        #brn-navbar-collapse-1.collapse.navbar-collapse(style='margin-top: 30px;')
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/#about') 關於我們
+            li
+              a(href='/#brn-feedback') 連絡我們
+            if user.username
+              li.dropdown
+                a.dropdown-toggle(data-toggle='dropdown', href='/account', id='user', data-username='#{user.username}')
+                  span.fa.fa-user &nbsp;Hi, #{user.username}&nbsp;
+                  b.caret
+                ul.dropdown-menu
+                  li: a(href='/account') Pitch Deck
+                  li: a(href='/logout') 會員登出
+                  li: a(href='/account/settings') 帳號設定
+            else
+              li: a(href='/login')
+                span &nbsp;會員登入
