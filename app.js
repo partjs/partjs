@@ -92,6 +92,21 @@ app.configure(function(){
     next();
   });
 
+  // partjs locals
+  app.use(function(req, res, next) {
+      res.locals.currentURL = function(path) {
+          //var url = req.protocol + "://";
+          if (path !== '') path = '/' + path;
+          url = ('/' + req.url + path).replace('//', '/');
+          return url
+      };
+      res.locals.now = function() {
+          return new Date().now;
+      };
+      res.locals.user = req.user;
+      next();
+  });
+
   //mount the routes
   app.use(app.router);
 
