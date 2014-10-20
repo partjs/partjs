@@ -1,7 +1,7 @@
 PartJS
 =============
 
-Built heavily based on Drywall, a user system for Node.js. PartJS is a package of single-page application biolerplates. 
+Built heavily based on Drywall, a user system for Node.js. PartJS is a package of single-page application boilerplates. 
 
 It is developed for Mokoversity Farm. [See Mokoversity Farm.](https://www.mokoversity.com/farm)
 
@@ -18,6 +18,18 @@ Technology
 | EmailJS       | Moment.js      |             |
 
 
+Prerequisite
+============
+
+Basically you could be a full stack developer.
+
+ - Strong JavaScript programming skills.
+ - Node.js fundamentals: async IO, HTTP module and etc.
+ - Express.js and Node.js
+ - Understanding REST architecture.
+ - Understanding NoSQL.
+ - MongoDB and its Node.js driver.
+
 Philosophy
 ==============
 
@@ -27,7 +39,33 @@ SPA templates
 ==============
 
  - ```views/timeline```: a timeline SPA
- - ```view/post```: a form SPA
+ - ```views/post```: a form SPA
+
+System Requirements
+==============
+
+ - Node Runtime
+ - MongoDB
+ - Grunt CLI
+ - npm and bower package manager
+
+Install
+==============
+
+```bash
+$ cd <directory-to-your-partjs>
+$ cp config.example.js config.js
+$ npm i
+$ bower i
+$ grunt build
+$ node app.js
+```
+
+Principles
+==============
+
+The templates of PartJS are following the principles of single-page application design. You could checkout [SPA Design Principles 101](http://www.slideshare.net/jollen/singlepage-application-design-principles-101).
+
 
 License
 ==============
