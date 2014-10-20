@@ -61,6 +61,8 @@ $ grunt build
 $ node app.js
 ```
 
+Please visit http://localhost:3000/.
+
 ### How to Install Homebrew (Mac)
 
 ```bash
