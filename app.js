@@ -92,13 +92,11 @@ app.configure(function(){
     next();
   });
 
-  // partjs locals
+  // partjs response locals
   app.use(function(req, res, next) {
       res.locals.currentURL = function(path) {
-          //var url = req.protocol + "://";
           if (path !== '') path = '/' + path;
-          url = ('/' + req.url + path).replace('//', '/');
-          return url
+          return (req._parsedUrl.path + path).replace('//', '/');
       };
       res.locals.now = function() {
           return new Date().now;
