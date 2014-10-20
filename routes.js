@@ -167,6 +167,7 @@ exports = module.exports = function(app, passport) {
   // Full Element 
   app.get('/timeline*', require('./views/timeline/index').init);
   app.get('/post*', require('./views/post/index').init);
+  app.get('/about', require('./views/index').about);  
 
   // Full Element >> Forms
   app.get('/1/post', require('./views/api/post').readAll);

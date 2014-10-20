@@ -1,0 +1,27 @@
+boutextends layouts/default
+
+block fb_meta
+  meta(property='og:site_name', content='PartJS')
+  meta(property='og:title', content='Full Stack Boilerplates')
+  meta(property='og:url', content='#{currentURL("")}')
+  meta(property='og:image', content='')
+  meta(property='article:published_time', content='')
+  
+block head
+  title #{projectName}
+
+block neck
+  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block body
+  section#landing
+    img.background-attach(src='/images/gallery/mac-glasses.jpg')
+    .row
+      .col-md-8
+        div.pull-right(style='background: #fcfcfc; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
+          h1(style='font-size:58px;') About
+          p
+            | PartJS is a ...
+  section#slogan
+    div
+      p Use PartJS as your full stack...
