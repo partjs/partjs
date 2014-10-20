@@ -61,6 +61,36 @@ $ grunt build
 $ node app.js
 ```
 
+### How to Install Homebrew (Mac)
+
+```bash
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+### How to Install Node
+
+```bash
+$ brew install nodejs
+```
+
+### How to Install MongoDB
+
+```bash
+$ brew install mongodb
+```
+
+### How to Install bower
+
+```bash
+$ npm i -g bower
+```
+
+### How to Install Grunt
+
+```bash
+$ npm i -g grunt-cli
+```
+
 Principles
 ==============
 
