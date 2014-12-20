@@ -13,27 +13,27 @@ block head
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
 
+block feet
+  script(src='/elements/src/index.js')
+
 block body
   section#landing
     img.background-attach(src='/images/gallery/mac-glasses.jpg')
     .row
       .col-md-8
-        div.pull-right(style='background: #fcfcfc; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
+        div.pull-right(style='background: #999; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
           h1(style='font-size:58px;') PartJS
           p
             | A single-page application boilerplate suite that can be reused in new applications.
 
   section
     .container(style='margin-top: 20px; margin-bottom: 20px;')
-        .row.panel
-            .col-md-4.bg_blur
-              a.follow_btn.hidden-xs(href='http://innoboard.cc/unsplash') 看照片
-            .col-md-8.col-xs-12
-              img.img-thumbnail.picture.hidden-xs(src='http://lorempixel.com/output/people-q-c-100-100-1.jpg')
-              img.img-thumbnail.visible-xs.picture_mob(src='http://lorempixel.com/output/people-q-c-100-100-1.jpg')
-              .header
-                h1 Lorem Ipsum
-                h4 Web Developer
-                span
-                  | Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-                  | "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+      .row
+        .col-md-4#news
+
+
+  script(type='text/template', id='tmpl-news')
+    a.text-center(href='#')
+      img.img-responsive(style='margin:0;', src='http://lorempixel.com/800/533/?1')
+      .info
+        h2 Course Conference
