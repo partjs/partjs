@@ -50,9 +50,26 @@ app.NewsView = Backbone.View.extend({
         this.render();
     },
     render: function() {
+        // 1. Parse template to HTML
         var innerHtml = this.template( this.model.attributes );
+        console.log('step 1');
 
-        this.$el.html(innerHtml);
+        // 2. Create an element
+        var myElement = document.createElement('div');
+        myElement.innerHTML= innerHtml;
+        console.log('step 2');
+
+        // 3. Create a subtree
+        var subTree = myElement.firstChild;
+        console.log('step 3');
+
+        // 4: composition boundary
+        this.$el.append(subTree); 
+        this.tree = subTree;
+        console.log('step 4');
+
+        // 5. shadow DOM
+        this.element = myElement;
     }
 });
 
