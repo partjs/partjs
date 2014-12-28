@@ -84,13 +84,19 @@ $ brew install mongodb
 ### How to Install bower
 
 ```bash
-$ npm i -g bower
+$ sudo npm i -g bower
 ```
 
 ### How to Install Grunt
 
 ```bash
-$ npm i -g grunt-cli
+$ sudo npm i -g grunt-cli
+```
+
+### How to Install forever
+
+```bash
+$ sudo npm -g i forever
 ```
 
 Principles
