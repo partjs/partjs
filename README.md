@@ -58,7 +58,7 @@ $ cp config.example.js config.js
 $ npm i
 $ bower i
 $ grunt build
-$ node app.js
+$ grunt start
 ```
 
 Please visit http://localhost:3000/.
