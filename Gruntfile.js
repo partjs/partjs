@@ -200,7 +200,7 @@ module.exports = function(grunt) {
     },
     exec: {
         start_server: {
-            cmd: 'if [ ! -f <%=PIDFILE%> ]; then touch <%=PIDFILE%> && PORT=5000 NODE_ENV=production forever start -p <%=FOREVER_DIR%> -l <%= pkg.name %>.log -c "node --max-old-space-size=8192 --nouse-idle-notification" -a app.js; else echo "Can\'t start <%= pkg.name %>: <%= pkg.name %> is already running."; fi'
+            cmd: 'if [ ! -f <%=PIDFILE%> ]; then touch <%=PIDFILE%> && PORT=3000 NODE_ENV=production forever start -p <%=FOREVER_DIR%> -l <%= pkg.name %>.log -c "node --max-old-space-size=8192 --nouse-idle-notification" -a app.js; else echo "Can\'t start <%= pkg.name %>: <%= pkg.name %> is already running."; fi'
         },
         stop_server: {
             cmd: 'if [ -f <%=PIDFILE%> ]; then rm -f <%=PIDFILE%> && forever stop app.js; else echo "Can\'t stop <%= pkg.name %>: <%= pkg.name %> is not running."; fi'
