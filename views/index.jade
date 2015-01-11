@@ -13,7 +13,7 @@ block head
 block neck
 
 block feet
-  script(src='/elements/build/bundle.js?#{cacheBreaker}')
+  script(src='/views/build/index.js?#{cacheBreaker}')
 
 block body
 
@@ -21,15 +21,15 @@ block body
     .container(style='margin-top: 30px; margin-bottom: 80px;')
       .row
         .col-md-8.col-md-offset-2.text-center
-          h1(style='margin-bottom: 50px;') Next Generation WoT and SPA Framework
-          h2(style='margin-bottom: 30px; font-weight: 300; line-height: 40px; text-align: left;') 
-            span(style='font-weight: 300;') require('elements')
+          h2(style='margin-bottom: 50px;') Next Generation WoT and SPA Framework
+          h3(style='margin-left: 15%; margin-bottom: 30px; font-weight: 300; line-height: 40px; text-align: left;') 
+            span(style='font-weight: 300;') var Elements = require('partjs-elements');
             br
-            | .Spot( { template: _.template( $('#tmpl-spot-news').html() ) } )
+            | var component = new Elements.Spot( ... );
             br
-            | .add( { title: 'Hello', href: '/hello', img: 'hello.jpg' } );
+            | component.add( ... );
             br
-            | .add( { title: 'World', href: '/world', img: 'world.jpg' } );
+            | component.add( ... );
 
   section
     .container(style='width: 80%;')
@@ -44,12 +44,12 @@ block body
       .row
         .col-md-6.col-md-offset-3.text-center
           h2(style='margin-bottom: 30px;') Spot
-          p A photo background square box that display a heading.
+          p A photo background square box that just display a heading with a hyperlink.
           pre
             | /* How to composite a Spot element. */
             | 
             | // Step 1: Require partjs elements.
-            | var Elements = require('elements');
+            | var Elements = require('partjs-elements');
             | 
             | // Step 2: Create an element instance and bind data.
             | this.widget = new Elements.Spot({
@@ -68,17 +68,26 @@ block body
             | // * and composite UI.
             | this.widget.add({
             |   title: 'Coders', 
-            |   href: '/coders',
+            |   href: 'https://www.mokoversity.com/coders',
             |   img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
             | });
             | this.widget.add({
-            |   title: 'Courses', 
-            |   href: '/course/html5',
+            |   title: 'Makers', 
+            |   href: 'https://www.mokoversity.com/makers',
             |   img: '//static.mokoversity.com/images/gallery/spot-online.jpg'
             | });
             | this.widget.add({
             |   title: 'Training', 
-            |   href: '/camp/full-stack',
+            |   href: 'https://www.mokoversity.com/camp/full-stack',
             |   img: '//static.mokoversity.com/images/gallery/spot-training.jpg'
             | });
-          a.ghost-button.ghost-button-inverse(href='#') View Demo
+      section.spot-box
+        .row.text-center#demo-spot
+          a.ghost-button.ghost-button-inverse#btn-demo-spot(href='#') Run
+
+  script(type='text/template', id='tmpl-spot-news')
+    .col-md-4
+      a.text-center.btn-spot-news(href!='<%= href %>', data-id!='<%= spotId %>')
+        img.img-responsive(src!='<%= img %>')
+        .info
+          h2 <%= title %>
