@@ -2,38 +2,83 @@ extends layouts/default
 
 block fb_meta
   meta(property='og:site_name', content='PartJS')
-  meta(property='og:title', content='Full Stack Boilerplates')
+  meta(property='og:title', content='Next generation WoT and SPA.')
   meta(property='og:url', content='#{currentURL("")}')
   meta(property='og:image', content='')
   meta(property='article:published_time', content='')
   
 block head
-  title #{projectName}
+  title Next Generation WoT and SPA Framework
 
 block neck
-  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
 
 block feet
   script(src='/elements/build/bundle.js?#{cacheBreaker}')
 
 block body
-  section#landing
-    img.background-attach(src='/images/gallery/mac-glasses.jpg')
-    .row
-      .col-md-8
-        div.pull-right(style='background: #999; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
-          h1(style='font-size:58px;') PartJS
-          p
-            | A single-page application boilerplate suite that can be reused in new applications.
 
   section
-    .container(style='margin-top: 20px; margin-bottom: 20px;')
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
       .row
-        .col-md-4#news
+        .col-md-8.col-md-offset-2.text-center
+          h1(style='margin-bottom: 50px;') Next Generation WoT and SPA Framework
+          h2(style='margin-bottom: 30px; font-weight: 300; line-height: 40px; text-align: left;') 
+            span(style='font-weight: 300;') require('elements')
+            br
+            | .Spot( { template: _.template( $('#tmpl-spot-news').html() ) } )
+            br
+            | .add( { title: 'Hello', href: '/hello', img: 'hello.jpg' } );
+            br
+            | .add( { title: 'World', href: '/world', img: 'world.jpg' } );
 
+  section
+    .container(style='width: 80%;')
+      .or-spacer
+        .mask
+          |   
+          span
+            i Components
 
-  script(type='text/template', id='tmpl-news')
-    a.text-center(href='#')
-      img.img-responsive(style='margin:0;', src='http://lorempixel.com/800/533/?1')
-      .info
-        h2 Course Conference
+  section
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
+      .row
+        .col-md-6.col-md-offset-3.text-center
+          h2(style='margin-bottom: 30px;') Spot
+          p A photo background square box that display a heading.
+          pre
+            | /* How to composite a Spot element. */
+            | 
+            | // Step 1: Require partjs elements.
+            | var Elements = require('elements');
+            | 
+            | // Step 2: Create an element instance and bind data.
+            | this.widget = new Elements.Spot({
+            |   // backbone element
+            |   el: this.$el, 
+            |   // backbone data model
+            |   model: app.SpotNews, 
+            |   // backbone collection
+            |   collection: app.SpotNewsCollection, 
+            |   // underscore template
+            |   template: this.template 
+            | });
+            | 
+            | // Step 3: Add a new data model to element instance.
+            | // * This will internally create the different model instances 
+            | // * and composite UI.
+            | this.widget.add({
+            |   title: 'Coders', 
+            |   href: '/coders',
+            |   img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
+            | });
+            | this.widget.add({
+            |   title: 'Courses', 
+            |   href: '/course/html5',
+            |   img: '//static.mokoversity.com/images/gallery/spot-online.jpg'
+            | });
+            | this.widget.add({
+            |   title: 'Training', 
+            |   href: '/camp/full-stack',
+            |   img: '//static.mokoversity.com/images/gallery/spot-training.jpg'
+            | });
+          a.ghost-button.ghost-button-inverse(href='#') View Demo

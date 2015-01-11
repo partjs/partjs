@@ -1,6 +1,34 @@
-footer
+div#back-top.hide
+  a(href='#top')
+    i.fa.fa-chevron-up
+
+div#footer
   .container
     .row
-      .col-sm-12
-        p.pull-right
-          | Copyright © 2014 #{projectName}
+      .col-md-4
+        h3 What is partjs ?
+        p partjs is the next generation WoT and SPA framework. It contains UI components that can be reused in your single-page application. 
+        |                   
+        ul.icons
+          li
+            i.fa.fa-envelope
+            | jollen@jollen.org
+           
+      .col-md-4
+        h3 Technology               
+        ul
+          li Express and MongoDB
+          li Backbone.js with virtual-dom
+          li Template-based component
+          li Node.js and REST architecture
+      .col-md-4
+        h3 Community
+        .book
+          ul.bookextra
+            li
+                a.fa.fa-github(href='https://github.com/partjs') https://github.com/partjs
+
+  #copyright
+    .row
+      .col-md-12
+        p Copyright (C) 2015 Moko365 Inc. All rights reserved.
