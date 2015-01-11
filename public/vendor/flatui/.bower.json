@@ -1,0 +1,14 @@
+{
+  "name": "flatui",
+  "homepage": "https://github.com/paulovitin/Flat-UI",
+  "_release": "742fcb6456",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "742fcb645673e4ea4e62603efc26e7923ba8833c"
+  },
+  "_source": "git://github.com/paulovitin/Flat-UI.git",
+  "_target": "*",
+  "_originalSource": "flatui",
+  "_direct": true
+}

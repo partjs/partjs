@@ -83,6 +83,12 @@ module.exports = function(grunt) {
           'public/less/**/*.less'
          ],
          tasks: ['newer:less']
+      },
+      partjsLess: {
+         files: [
+          'public/vendor/flatui/less/modules/partjs.less'
+         ],
+         tasks: ['less:development']
       }
     },
     uglify: {
@@ -177,6 +183,11 @@ module.exports = function(grunt) {
           dest: 'public/views/',
           ext: '.min.css'
         }]
+      },
+      development: {
+          files: {
+              'public/css/flat-ui.min.css': 'public/vendor/flatui/less/flat-ui.less'
+          }
       }
     },
     clean: {
