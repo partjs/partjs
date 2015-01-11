@@ -1,6 +1,6 @@
 {
-  "name": "Drywall",
-  "version": "0.9.29",
+  "name": "partjs",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -8,14 +8,19 @@
   "dependencies": {
     "async": "~0.6.2",
     "bcrypt": "~0.7.7",
+    "browser-sync": "^1.9.0",
     "connect-mongo": "~0.4.0",
     "emailjs": "~0.3.6",
     "express": "~3.5.1",
+    "gulp": "^3.8.10",
+    "gulp-util": "^3.0.2",
     "helmet": "~0.2.0",
+    "html-to-vdom": "^0.4.0",
     "html5": "^1.0.5",
     "jade": "~1.3.0",
     "moment": "^2.8.3",
     "mongoose": "~3.8.1",
+    "partjs-elements": "0.0.2",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.2",
     "passport-github": "~0.1.5",
@@ -27,6 +32,7 @@
     "zombie": "^2.1.1"
   },
   "devDependencies": {
+    "browser-sync": "^0.9.1",
     "grunt": "~0.4.1",
     "grunt-concurrent": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
@@ -37,6 +43,28 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-exec": "^0.4.6",
     "grunt-newer": "~0.7.0",
-    "grunt-nodemon": "~0.2.0"
+    "grunt-nodemon": "~0.2.0",
+    "gulp": "^3.6.0",
+    "gulp-autoprefixer": "^0.0.7",
+    "gulp-browserify": "^0.5.0",
+    "gulp-cache": "^0.1.1",
+    "gulp-csso": "^0.2.6",
+    "gulp-flatten": "^0.0.2",
+    "gulp-if": "^1.2.1",
+    "gulp-imagemin": "^0.6.0",
+    "gulp-jshint": "^1.5.3",
+    "gulp-load-plugins": "*",
+    "gulp-minify-html": "^0.1.3",
+    "gulp-replace": "^0.3.0",
+    "gulp-ruby-sass": "*",
+    "gulp-size": "^0.4.0",
+    "gulp-uglify": "^0.3.0",
+    "gulp-uncss": "^0.4.4",
+    "gulp-useref": "^0.4.3",
+    "jshint-stylish": "^0.2.0",
+    "opn": "^0.1.1",
+    "psi": "0.0.3",
+    "rimraf": "^2.2.8",
+    "run-sequence": "^0.3.6"
   }
 }
