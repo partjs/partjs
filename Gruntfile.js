@@ -86,7 +86,8 @@ module.exports = function(grunt) {
       },
       partjsLess: {
          files: [
-          'public/vendor/flatui/less/modules/partjs.less'
+          'public/vendor/flatui/less/modules/partjs.less',
+          'public/vendor/flatui/less/modules/partjs-ui.less'
          ],
          tasks: ['less:development']
       }
