@@ -1,25 +1,48 @@
 /**
  * Modules
  */
-var Elements = require('partjs-elements');
+ /**
+ * Modules
+ */
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+var Component = require('automationjs');
 
 /**
  * Setup
  */
+Backbone.$ = $;
 var app = app || {};
 
 /**
 * MODELS
 **/
 app.SpotNews = Backbone.Model.extend({
+	url: function() {
+		return 'http://api.openweathermap.org/data/2.5/weather?q=' 
+		+ this.attributes.city
+		+ ','
+		+ this.attributes.country;
+	},
 	defaults: {
 		success: false,
 		errors: [],
 		errfor: {},
 
-		title: '',
-		href: '',
-		img: ''
+		city: '',
+		country: '',
+		img: '',
+
+		temp: 0
+	},
+	// AutomationJS plugins
+	parseJSON: function(response) {
+		// parse response
+		var f = Math.round((response.main.temp - 273.15) * 1.8 + 32)
+		,	c = Math.round((response.main.temp - 273.15));
+
+		this.set('temp', c);
 	}
 });
 
@@ -37,48 +60,49 @@ app.SpotsView = Backbone.View.extend({
 	el: '#demo-spot',
 	template: _.template( $('#tmpl-spot-news').html() ),
 	events: {
-		'click #btn-demo-spot': 'handleTaget'
+		'click #btn-demo-spot': 'handleTaget',
+		'click .btn-spot-news': 'handleCurrentTaget'
 	},
 	initialize: function() {
-		//this.model = new app.SpotNews();
-        this.widget = new Elements.Spot({
+        this.component = new Component.SpotList({
           el: this.$el,
           model: app.SpotNews,
-          collection: app.SpotNewsCollection,
           template: this.template
         });
+        this.render();
 	},
 	handleTaget: function(ev) {
 		ev.preventDefault();
 		
 		this.$el
 			.find(ev.target)
-			.addClass('hide');
-		
-		this.render();
+			.addClass('hide');		
 	},
 	handleCurrentTaget: function(ev) {
 		ev.preventDefault();
 		
 		var elm = this.$el.find(ev.currentTarget);
+		var cid = elm.data('cid');	
+
+		this.component.trigger('forceUpdateAll');
 	},
 	// Facade pattern
 	render: function() {
-        this.widget.add({
-        	title: 'Coders', 
+        this.component.add({
+        	city: 'London', 
+        	country: 'uk',
+        	temp: 0,
         	href: 'https://www.mokoversity.com/coders',
         	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
         });
-        this.widget.add({
-        	title: 'Makers', 
-        	href: 'https://www.mokoversity.com/makers',
-        	img: '//static.mokoversity.com/images/gallery/spot-online.jpg'
+        this.component.add({
+        	city: 'Taipei', 
+        	country: 'tw',
+        	temp: 0,
+        	href: 'https://www.mokoversity.com/coders',
+        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
         });
-        this.widget.add({
-        	title: 'Training', 
-        	href: 'https://www.mokoversity.com/camp/full-stack',
-        	img: '//static.mokoversity.com/images/gallery/spot-training.jpg'
-        });
+        this.component.trigger('forceUpdateAll');
 	}
 });
 

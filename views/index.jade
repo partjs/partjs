@@ -13,7 +13,7 @@ block head
 block neck
 
 block feet
-  script(src='/views/build/index.js?#{cacheBreaker}')
+  script(src='/views/build/index.js?1')
 
 block body
 
@@ -83,11 +83,11 @@ block body
             | });
       section.spot-box
         .row.text-center#demo-spot
-          a.ghost-button.ghost-button-inverse#btn-demo-spot(href='#') Run
+          //- a.ghost-button.ghost-button-inverse#btn-demo-spot(href='#') Run
 
   script(type='text/template', id='tmpl-spot-news')
     .col-md-4
-      a.text-center.btn-spot-news(href!='<%= href %>', data-id!='<%= spotId %>')
+      a.text-center.btn-spot-news(href!='#', data-cid!='<%= cid %>')
         img.img-responsive(src!='<%= img %>')
         .info
-          h2 <%= title %>
+          h2 <%= name %> / <%= temp %>°C

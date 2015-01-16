@@ -35,7 +35,7 @@ gulp.task('apps', function() {
         .pipe(browserify({
           insertGlobals : false
         }))
-        .pipe($.uglify())
+        //.pipe($.uglify())
         .pipe(gulp.dest('public/views/build'));
 });
 
