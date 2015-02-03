@@ -1,0 +1,78 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'i', 'shieldui' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'shieldui', null ]
+6 verbose cache add name=undefined spec="shieldui" args=["shieldui",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'shieldui',
+7 verbose parsed url   path: 'shieldui',
+7 verbose parsed url   href: 'shieldui' }
+8 silly lockFile 451ea423-shieldui shieldui
+9 verbose lock shieldui /Users/jollen/.npm/451ea423-shieldui.lock
+10 silly lockFile 451ea423-shieldui shieldui
+11 silly lockFile 451ea423-shieldui shieldui
+12 verbose addNamed [ 'shieldui', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 7406157d-shieldui shieldui@
+15 verbose lock shieldui@ /Users/jollen/.npm/7406157d-shieldui.lock
+16 silly addNameRange { name: 'shieldui', range: '*', hasData: false }
+17 verbose url raw shieldui
+18 verbose url resolving [ 'http://registry.npmjs.org/', './shieldui' ]
+19 verbose url resolved http://registry.npmjs.org/shieldui
+20 info trying registry request attempt 1 at 18:03:48
+21 http GET http://registry.npmjs.org/shieldui
+22 http 404 http://registry.npmjs.org/shieldui
+23 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 verbose headers   'content-type': 'application/json',
+23 verbose headers   'cache-control': 'max-age=0',
+23 verbose headers   'content-length': '52',
+23 verbose headers   'accept-ranges': 'bytes',
+23 verbose headers   date: 'Tue, 03 Feb 2015 10:03:49 GMT',
+23 verbose headers   via: '1.1 varnish',
+23 verbose headers   age: '0',
+23 verbose headers   connection: 'keep-alive',
+23 verbose headers   'x-served-by': 'cache-ty66-TYO',
+23 verbose headers   'x-cache': 'MISS',
+23 verbose headers   'x-cache-hits': '0',
+23 verbose headers   'x-timer': 'S1422957829.103889,VS0,VE189' }
+24 silly registry.get cb [ 404,
+24 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly registry.get     'content-type': 'application/json',
+24 silly registry.get     'cache-control': 'max-age=0',
+24 silly registry.get     'content-length': '52',
+24 silly registry.get     'accept-ranges': 'bytes',
+24 silly registry.get     date: 'Tue, 03 Feb 2015 10:03:49 GMT',
+24 silly registry.get     via: '1.1 varnish',
+24 silly registry.get     age: '0',
+24 silly registry.get     connection: 'keep-alive',
+24 silly registry.get     'x-served-by': 'cache-ty66-TYO',
+24 silly registry.get     'x-cache': 'MISS',
+24 silly registry.get     'x-cache-hits': '0',
+24 silly registry.get     'x-timer': 'S1422957829.103889,VS0,VE189' } ]
+25 silly lockFile 7406157d-shieldui shieldui@
+26 silly lockFile 7406157d-shieldui shieldui@
+27 error 404 404 Not Found: shieldui
+27 error 404
+27 error 404 'shieldui' is not in the npm registry.
+27 error 404 You should bug the author to publish it
+27 error 404 It was specified as a dependency of 'partjs'
+27 error 404
+27 error 404 Note that you can also install from a
+27 error 404 tarball, folder, or http url, or git url.
+28 error System Darwin 13.3.0
+29 error command "node" "/usr/local/bin/npm" "i" "shieldui"
+30 error cwd /Users/jollen/partjs
+31 error node -v v0.10.29
+32 error npm -v 1.4.14
+33 error code E404
+34 verbose exit [ 1, true ]

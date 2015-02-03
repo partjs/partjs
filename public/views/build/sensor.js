@@ -31984,7 +31984,7 @@ module.exports=require(37)
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Component = require('automationjs');
+var Automation = require('automationjs');
 
 /**
  * Setup
@@ -31995,12 +31995,13 @@ var app = app || {};
 /**
 * MODELS
 **/
-app.SpotNews = Backbone.Model.extend({
+app.SpotNewsPush = Backbone.Model.extend({
 	url: function() {
-		return 'http://api.openweathermap.org/data/2.5/weather?q=' 
-		+ this.attributes.city
-		+ ','
-		+ this.attributes.country;
+		return '/1/sandbox/weather/' 
+		+ this.attributes.city;
+	},
+	wsUrl: function() {
+		return 'ws://localhost:8080/' 
 	},
 	defaults: {
 		success: false,
@@ -32012,28 +32013,13 @@ app.SpotNews = Backbone.Model.extend({
 		img: '',
 
 		temp: 0
-	},
-	// AutomationJS plugins
-	parseJSON: function(response) {
-		// parse response
-		var f = Math.round((response.main.temp - 273.15) * 1.8 + 32)
-		,	c = Math.round((response.main.temp - 273.15));
-
-		this.set('temp', c);
 	}
-});
-
-/**
- *
- */
-app.SpotNewsCollection = Backbone.Collection.extend({
-    model: app.SpotNews
 });
 
 /**
 * VIEWS
 **/
-app.SpotsView = Backbone.View.extend({
+app.SpotsPushView = Backbone.View.extend({
 	el: '#demo-spot',
 	template: _.template( $('#tmpl-spot-news').html() ),
 	events: {
@@ -32041,12 +32027,22 @@ app.SpotsView = Backbone.View.extend({
 		'click .btn-spot-news': 'handleCurrentTaget'
 	},
 	initialize: function() {
-        this.component = new Component.SpotList({
+        this.component = new Automation({
           el: this.$el,
-          model: app.SpotNews,
+          model: app.SpotNewsPush,
           template: this.template
         });
-        this.render();
+
+        // initialize sub tree
+        var model = this.component.add({
+        	city: 'Taipei', 
+        	country: 'tw',
+        	temp: 0,
+        	href: 'https://www.mokoversity.com/coders',
+        	img: '/images/gallery/timeline-1.jpg'
+        });
+
+        model.bind('notify.change', this.render, model);
 	},
 	handleTaget: function(ev) {
 		ev.preventDefault();
@@ -32063,51 +32059,12 @@ app.SpotsView = Backbone.View.extend({
 
 		this.component.trigger('forceUpdateAll');
 	},
-	// Facade pattern
 	render: function() {
-        this.component.add({
-        	city: 'London', 
-        	country: 'uk',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Taipei', 
-        	country: 'tw',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Singapore', 
-        	country: 'sg',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Tainan', 
-        	country: 'tw',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Shenzhen', 
-        	country: 'cn',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Kyoto', 
-        	country: 'jp',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.trigger('forceUpdateAll');
+        $('#current div.bottom')
+        	.css('height', '60px')
+			.animate({
+				height: this.get('temp')
+			}, 1000);
 	}
 });
 
@@ -32117,6 +32074,6 @@ app.SpotsView = Backbone.View.extend({
 // Use jQuery ready in browserify mode
 // since require() in Node.js is async.
 $(function() {
-	app.spotsView = new app.SpotsView();
+	app.spotsPushView = new app.SpotsPushView();
 });
 },{"automationjs":1,"backbone":36,"jquery":88,"underscore":89}]},{},[90])

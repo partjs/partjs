@@ -31,7 +31,15 @@ var browserify = require('gulp-browserify');
 
 // Browserify
 gulp.task('apps', function() {
-    gulp.src('public/views/src/index.js')
+    gulp.src('public/views/src/sandbox.js')
+        .pipe(browserify({
+          insertGlobals : false
+        }))
+        //.pipe($.uglify())
+        .pipe(gulp.dest('public/views/build'));
+});
+gulp.task('apps-sensor', function() {
+    gulp.src('public/views/src/sensor.js')
         .pipe(browserify({
           insertGlobals : false
         }))
@@ -140,7 +148,11 @@ gulp.task('serve', function () {
     // gulp.watch(['.tmp/styles/**/*.css'], reload);
     // gulp.watch(['app/scripts/**/*.js'], ['jshint']);
     // gulp.watch(['app/images/**/*'], ['images']);
-    gulp.watch(['public/views/src/**/*'], ['apps']);
+    gulp.watch(['public/views/src/index.js'], ['apps']);
+    gulp.watch(['public/views/src/sandbox.js'], ['apps']);
+
+    gulp.watch(['public/views/src/sensor.js'], ['apps-sensor']);
+    gulp.watch(['node_modules/automationjs-dev/index.js'], ['apps']);
 });
 
 // Build Production Files

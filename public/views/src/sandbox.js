@@ -7,7 +7,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Component = require('automationjs');
+var Automation = require('automationjs-dev');
 
 /**
  * Setup
@@ -20,10 +20,8 @@ var app = app || {};
 **/
 app.SpotNews = Backbone.Model.extend({
 	url: function() {
-		return 'http://api.openweathermap.org/data/2.5/weather?q=' 
-		+ this.attributes.city
-		+ ','
-		+ this.attributes.country;
+		return '/1/sandbox/weather/' 
+		+ this.attributes.city;
 	},
 	defaults: {
 		success: false,
@@ -46,11 +44,25 @@ app.SpotNews = Backbone.Model.extend({
 	}
 });
 
-/**
- *
- */
-app.SpotNewsCollection = Backbone.Collection.extend({
-    model: app.SpotNews
+app.SpotNewsPush = Backbone.Model.extend({
+	url: function() {
+		return '/1/sandbox/weather/' 
+		+ this.attributes.city;
+	},
+	wsUrl: function() {
+		return 'ws://localhost:8080/' 
+	},
+	defaults: {
+		success: false,
+		errors: [],
+		errfor: {},
+
+		city: '',
+		country: '',
+		img: '',
+
+		temp: 0
+	}
 });
 
 /**
@@ -64,11 +76,12 @@ app.SpotsView = Backbone.View.extend({
 		'click .btn-spot-news': 'handleCurrentTaget'
 	},
 	initialize: function() {
-        this.component = new Component.SpotList({
+        this.component = new Automation({
           el: this.$el,
           model: app.SpotNews,
           template: this.template
         });
+
         this.render();
 	},
 	handleTaget: function(ev) {
@@ -86,51 +99,63 @@ app.SpotsView = Backbone.View.extend({
 
 		this.component.trigger('forceUpdateAll');
 	},
-	// Facade pattern
 	render: function() {
-        this.component.add({
-        	city: 'London', 
-        	country: 'uk',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
+		
         this.component.add({
         	city: 'Taipei', 
         	country: 'tw',
         	temp: 0,
         	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
+        	img: '/images/gallery/timeline-1.jpg'
         });
-        this.component.add({
-        	city: 'Singapore', 
-        	country: 'sg',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
+
+        this.component.trigger('forceUpdateAll');
+	}
+});
+
+app.SpotsPushView = Backbone.View.extend({
+	el: '#demo-spot',
+	template: _.template( $('#tmpl-spot-news').html() ),
+	events: {
+		'click #btn-demo-spot': 'handleTaget',
+		'click .btn-spot-news': 'handleCurrentTaget'
+	},
+	initialize: function() {
+        this.component = new Automation({
+          el: this.$el,
+          model: app.SpotNewsPush,
+          template: this.template
         });
+
+        this.render();
+	},
+	handleTaget: function(ev) {
+		ev.preventDefault();
+		
+		this.$el
+			.find(ev.target)
+			.addClass('hide');		
+	},
+	handleCurrentTaget: function(ev) {
+		ev.preventDefault();
+		
+		var elm = this.$el.find(ev.currentTarget);
+		var cid = elm.data('cid');	
+
+		this.component.trigger('forceUpdateAll');
+	},
+	render: function() {
+		
         this.component.add({
-        	city: 'Tainan', 
+        	city: 'Taipei', 
         	country: 'tw',
         	temp: 0,
         	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
+        	img: '/images/gallery/timeline-1.jpg'
         });
-        this.component.add({
-        	city: 'Shenzhen', 
-        	country: 'cn',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.add({
-        	city: 'Kyoto', 
-        	country: 'jp',
-        	temp: 0,
-        	href: 'https://www.mokoversity.com/coders',
-        	img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
-        });
-        this.component.trigger('forceUpdateAll');
+
+        // Your don't need to trigger any event since
+        // this is real-time data model via WebSocket.
 	}
 });
 
@@ -140,5 +165,5 @@ app.SpotsView = Backbone.View.extend({
 // Use jQuery ready in browserify mode
 // since require() in Node.js is async.
 $(function() {
-	app.spotsView = new app.SpotsView();
+	app.spotsPushView = new app.SpotsPushView();
 });
