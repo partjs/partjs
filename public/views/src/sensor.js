@@ -7,7 +7,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Automation = require('automationjs');
+var Automation = require('automationjs-dev');
 
 /**
  * Setup
@@ -24,7 +24,7 @@ app.SpotNewsPush = Backbone.Model.extend({
 		+ this.attributes.city;
 	},
 	wsUrl: function() {
-		return 'ws://localhost:8080/' 
+		return 'ws://sockets.mbed.org/ws/mbedschool/ro' 
 	},
 	defaults: {
 		success: false,
@@ -35,7 +35,14 @@ app.SpotNewsPush = Backbone.Model.extend({
 		country: '',
 		img: '',
 
-		temp: 0
+		temp: 0,
+		lowpulseoccupancytime: 10
+	},
+	// AutomationJS plugins
+	parseJSON: function() {
+		var lowpulseoccupancytime = this.get('lowpulseoccupancytime');
+
+		this.set('lowpulseoccupancytime', lowpulseoccupancytime * 4500);
 	}
 });
 
@@ -60,7 +67,7 @@ app.SpotsPushView = Backbone.View.extend({
         var model = this.component.add({
         	city: 'Taipei', 
         	country: 'tw',
-        	temp: 0,
+        	lowpulseoccupancytime: 0,
         	href: 'https://www.mokoversity.com/coders',
         	img: '/images/gallery/timeline-1.jpg'
         });
@@ -86,7 +93,7 @@ app.SpotsPushView = Backbone.View.extend({
         $('#current div.bottom')
         	.css('height', '60px')
 			.animate({
-				height: this.get('temp')
+				height: this.get('lowpulseoccupancytime')
 			}, 1000);
 	}
 });

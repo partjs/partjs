@@ -355,6 +355,9 @@ Automation.prototype._createChannel = function(cid, url, cbs) {
   		    model.set(prop, options[prop]);
   	}
 
+    if (_.isFunction(model.parseJSON))
+      model.parseJSON();
+
     // notify View
     model.trigger('notify.change');
 
@@ -363,7 +366,7 @@ Automation.prototype._createChannel = function(cid, url, cbs) {
   }.bind(this);
 
   // Let us open a web socket
-  ws = new WebSocket(url, ['rest-object']);
+  ws = new WebSocket(url /*, ['rest-object'] */);
 
   if (typeof(cbs) === 'undefined' || cbs.onopen !== 'function')
     cbs.onopen = onopen;
