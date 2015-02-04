@@ -1,0 +1,35 @@
+extends layouts/default
+
+block fb_meta
+  meta(property='og:site_name', content='PartJS')
+  meta(property='og:title', content='Next generation WoT and SPA.')
+  meta(property='og:url', content='#{currentURL("")}')
+  meta(property='og:image', content='')
+  meta(property='article:published_time', content='')
+  
+block head
+  title Next Generation WoT and SPA Framework
+
+block neck
+
+block feet
+  script(src='/views/build/dashboard.js')
+
+block body
+
+  section
+    .container(style='width: 80%;')
+      .or-spacer
+        .mask
+          |   
+          span
+            i DashBoard
+
+  section
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
+      section.spot-box
+        .row.text-center#demo-spot
+
+  script(type='text/template', id='tmpl-spot-news')
+    .col-md-4
+      h2 <%= lowpulseoccupancytime %>

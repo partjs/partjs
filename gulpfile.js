@@ -46,6 +46,14 @@ gulp.task('apps-sensor', function() {
         //.pipe($.uglify())
         .pipe(gulp.dest('public/views/build'));
 });
+gulp.task('apps-dashboard', function() {
+    gulp.src('public/views/src/dashboard.js')
+        .pipe(browserify({
+          insertGlobals : false
+        }))
+        //.pipe($.uglify())
+        .pipe(gulp.dest('public/views/build'));
+});
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -152,6 +160,8 @@ gulp.task('serve', function () {
     gulp.watch(['public/views/src/sandbox.js'], ['apps']);
 
     gulp.watch(['public/views/src/sensor.js'], ['apps-sensor']);
+    gulp.watch(['public/views/src/dashboard.js'], ['apps-dashboard']);
+
     gulp.watch(['node_modules/automationjs-dev/index.js'], ['apps']);
 });
 
