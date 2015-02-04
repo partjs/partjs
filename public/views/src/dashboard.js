@@ -7,7 +7,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Automation = require('automationjs-dev');
+var Automation = require('automationjs');
 
 /**
  * Setup
