@@ -32133,7 +32133,7 @@ app.SpotNewsPush = Backbone.Model.extend({
 		+ this.attributes.city;
 	},
 	wsUrl: function() {
-		return 'ws://sockets.mbed.org/ws/mbedschool/ro' 
+		return 'ws://localhost:8080/' 
 	},
 	defaults: {
 		success: false,
