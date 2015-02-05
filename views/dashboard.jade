@@ -1,4 +1,4 @@
-extends layouts/default
+extends layouts/default_sensor
 
 block fb_meta
   meta(property='og:site_name', content='PartJS')
@@ -26,10 +26,16 @@ block body
             i DashBoard
 
   section
-    .container(style='margin-top: 30px; margin-bottom: 80px;')
+    .container(style='margin-top: 180px; margin-bottom: 80px;')
       section.spot-box
-        .row.text-center#demo-spot
+        .row.text-center#demo-accel
 
   script(type='text/template', id='tmpl-spot-news')
     .col-md-4
       h2 <%= lowpulseoccupancytime %>
+
+  script(type='text/template', id='tmpl-accel')
+    .col-md-6.col-md-offset-3
+      .progress
+        .progress-bar(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%;')
+            span.sr-only 100%

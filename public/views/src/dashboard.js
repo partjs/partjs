@@ -7,7 +7,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Automation = require('automationjs');
+var Automation = require('automationjs-dev');
 
 /**
  * Setup
@@ -42,6 +42,97 @@ app.SpotNewsPush = Backbone.Model.extend({
 		var lowpulseoccupancytime = this.get('lowpulseoccupancytime');
 
 		this.set('lowpulseoccupancytime', lowpulseoccupancytime * 4500);
+	}
+});
+
+app.Accel = Backbone.Model.extend({
+	url: function() {
+		return '/1/sandbox/weather/' 
+		+ this.attributes.city;
+	},
+	wsUrl: function() {
+		return 'ws://192.168.21.104:8080/' 
+	},
+	defaults: {
+		success: false,
+		errors: [],
+		errfor: {},
+
+		ax: 10,
+		ay: 10,
+		az: 10,
+
+		degree_x: 0
+	},
+	// AutomationJS plugins
+	parseJSON: function() {
+		var ax = 0 + this.get('ax')
+		,	ay = 0 + this.get('ay');
+
+		var comp_x = 1;
+
+		if (ax < 0)
+			comp_x = -1;
+
+		ax = ax * comp_x;
+
+		// normalized
+		var g = [
+			0.000,
+			0.047,
+			0.094,
+			0.141,
+			0.188,
+			0.234,
+			0.281,
+			0.328,
+			0.375,
+			0.422,
+			0.469,
+			0.516,
+			0.563,
+			0.609,
+			0.656,
+			0.703,
+			0.750,
+			0.797,
+			0.844,
+			0.891,
+			0.938,
+			0.984
+		];
+
+		var angle = [
+			0,
+			2.69,
+			5.38,
+			8.08,
+			10.81,
+			13.55,
+			16.33,
+			19.16,
+			22.02,
+			24.95,
+			27.95,
+			31.04,
+			34.23,
+			37.54,
+			41.01,
+			44.68,
+			48.59,
+			52.83,
+			57.54,
+			62.95,
+			69.64,
+			79.86
+		];
+
+		for (i = 0; i < g.length; i++) {
+			if (ax === g[i]) {
+				this.set('degree_x', angle[i] * comp_x);
+				break ;
+			}
+		}
 	}
 });
 
@@ -97,11 +188,44 @@ app.SpotsPushView = Backbone.View.extend({
 	}
 });
 
+app.AccelView = Backbone.View.extend({
+	el: '#demo-accel',
+	template: _.template( $('#tmpl-accel').html() ),
+	events: {
+	},
+	initialize: function() {
+        this.component = new Automation({
+          el: this.$el,
+          model: app.Accel,
+          template: this.template
+        });
+
+        // initialize sub tree
+        var model = this.component.add({
+        	ax: 10,
+        	ay: 20,
+        	az: 30,
+
+        	degree_x: 0
+        });
+
+        model.bind('notify.change', this.render, model);
+	},
+	render: function() {
+		var degree_x = this.get('degree_x');
+
+		$('.progress').css('-webkit-transform', 'rotate(' 
+			+ degree_x
+			+ 'deg)');
+	}
+});
+
 /**
 * BOOTUP
 **/
 // Use jQuery ready in browserify mode
 // since require() in Node.js is async.
 $(function() {
-	app.spotsPushView = new app.SpotsPushView();
+	//app.spotsPushView = new app.SpotsPushView();
+	app.accelView = new app.AccelView();
 });
