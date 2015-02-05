@@ -7,7 +7,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Automation = require('automationjs-dev');
+var Automation = require('automationjs');
 
 /**
  * Setup
@@ -24,7 +24,7 @@ app.SpotNewsPush = Backbone.Model.extend({
 		+ this.attributes.city;
 	},
 	wsUrl: function() {
-		return 'ws://sockets.mbed.org/' 
+		return 'ws://sockets.mbed.org/ws/mbedschool/ro';
 	},
 	defaults: {
 		success: false,
@@ -36,12 +36,65 @@ app.SpotNewsPush = Backbone.Model.extend({
 		img: '',
 
 		lowpulseoccupancytime: 10,
+		temp: '',
+		x: 10,
+		y: '',
+		z: '',
+		ax: '',
+		ay: '',
+		az: ''
 	},
 	// AutomationJS plugins
 	parseJSON: function() {
-		var lowpulseoccupancytime = this.get('lowpulseoccupancytime');
+		var normal_x = this.get('x')
+		,	normal_y = this.get('y')
+		,	normal_z = this.get('z');
 
-		this.set('lowpulseoccupancytime', lowpulseoccupancytime * 4500);
+		normal_x = ((normal_x / 10000) + 1) * 100;
+		normal_y = ((normal_y / 10000) + 1) * 100;
+		normal_z = ((normal_z / 10000) + 1) * 100;
+
+		this.set('x', normal_x);
+		this.set('y', normal_y);
+		this.set('z', normal_z);
+	}
+});
+
+app.TestUp = Backbone.Model.extend({
+	url: function() {
+		return '/1/sandbox/weather/' 
+		+ this.attributes.city;
+	},
+	wsUrl: function() {
+		return 'ws://192.168.21.104:8080/';
+	},
+	defaults: {
+		success: false,
+		errors: [],
+		errfor: {},
+
+		city: '',
+		country: '',
+		img: '',
+
+		lowpulseoccupancytime: 10,
+		temp: '',
+		x: 10,
+		y: '',
+		z: '',
+		ax: '',
+		ay: '',
+		az: ''
+	},
+	// AutomationJS plugins
+	parseJSON: function() {
+		var ax = this.get('ax')
+		,	ay = this.get('ay')
+		,	az = this.get('az');
+
+
+
+		this.set('result', false);
 	}
 });
 
@@ -162,7 +215,7 @@ app.SpotsPushView = Backbone.View.extend({
         	img: '/images/gallery/timeline-1.jpg'
         });
 
-        model.bind('notify.change', this.render, model);
+        //model.bind('notify.change', this.render, model);
 	},
 	handleTaget: function(ev) {
 		ev.preventDefault();
@@ -183,7 +236,56 @@ app.SpotsPushView = Backbone.View.extend({
         $('#current div.bottom')
         	.css('height', '60px')
 			.animate({
-				height: this.get('lowpulseoccupancytime')
+				height: this.get('x')
+			}, 1000);
+	}
+});
+
+app.TestUpView = Backbone.View.extend({
+	el: '#test-up',
+	template: _.template( $('#tmpl-test-up').html() ),
+	events: {
+		'click #btn-demo-spot': 'handleTaget',
+		'click .btn-spot-news': 'handleCurrentTaget'
+	},
+	initialize: function() {
+        this.component = new Automation({
+          el: this.$el,
+          model: app.TestUp,
+          template: this.template
+        });
+
+        // initialize sub tree
+        var model = this.component.add({
+        	city: 'Taipei', 
+        	country: 'tw',
+        	lowpulseoccupancytime: 0,
+        	href: 'https://www.mokoversity.com/coders',
+        	img: '/images/gallery/timeline-1.jpg'
+        });
+
+        //model.bind('notify.change', this.render, model);
+	},
+	handleTaget: function(ev) {
+		ev.preventDefault();
+		
+		this.$el
+			.find(ev.target)
+			.addClass('hide');		
+	},
+	handleCurrentTaget: function(ev) {
+		ev.preventDefault();
+		
+		var elm = this.$el.find(ev.currentTarget);
+		var cid = elm.data('cid');	
+
+		this.component.trigger('forceUpdateAll');
+	},
+	render: function() {
+        $('#current div.bottom')
+        	.css('height', '60px')
+			.animate({
+				height: this.get('x')
 			}, 1000);
 	}
 });
@@ -227,5 +329,6 @@ app.AccelView = Backbone.View.extend({
 // since require() in Node.js is async.
 $(function() {
 	//app.spotsPushView = new app.SpotsPushView();
+	app.testUp = new app.TestUpView();
 	app.accelView = new app.AccelView();
 });

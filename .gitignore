@@ -10,3 +10,4 @@ node_modules/*
 *.min.css
 /config.js
 .nodemonignore
+.DS_Store

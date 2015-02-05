@@ -17,18 +17,29 @@ block feet
 
 block body
 
+  
+
+  section
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
+      section.spot-box
+        .row.text-center
+          .col-md-3.text-right
+          .col-md-6#demo-spot
+
   section
     .container(style='width: 80%;')
       .or-spacer
         .mask
           |   
           span
-            i DashBoard
+            i Dashboard
 
   section
     .container(style='margin-top: 180px; margin-bottom: 80px;')
       section.spot-box
         .row.text-center#demo-accel
+        .row.text-center#test-up
+
 
   script(type='text/template', id='tmpl-spot-news')
     .col-md-4
@@ -39,3 +50,15 @@ block body
       .progress
         .progress-bar(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%;')
             span.sr-only 100%
+
+  script(type='text/template', id='tmpl-spot-news')
+    div
+      .progress
+        .progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style!="width: <%= x %>%;")
+      .progress
+        .progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style!="width: <%= y %>%;")
+      .progress
+        .progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style!="width: <%= z %>%;")
+
+  script(type='text/template', id='tmpl-test-up')
+    h1 <%= ax %>, <%= ay %>, <%= az %>: 
