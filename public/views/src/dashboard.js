@@ -104,7 +104,7 @@ app.Accel = Backbone.Model.extend({
 		+ this.attributes.city;
 	},
 	wsUrl: function() {
-		return 'ws://192.168.21.104:8080/' 
+		return 'ws://wot.city/object/accelerometer/viewer' 
 	},
 	defaults: {
 		success: false,
@@ -329,6 +329,6 @@ app.AccelView = Backbone.View.extend({
 // since require() in Node.js is async.
 $(function() {
 	//app.spotsPushView = new app.SpotsPushView();
-	app.testUp = new app.TestUpView();
+	//app.testUp = new app.TestUpView();
 	app.accelView = new app.AccelView();
 });
