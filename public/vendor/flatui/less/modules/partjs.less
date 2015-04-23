@@ -1,0 +1,644 @@
+/**
+ * PartJS Website.
+ */
+@import '../../../../less/bootstrap-vars.less';
+@import '../../../../less/partjs-mixins.less';
+
+
+/*
+ * Rest base.
+ */
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.72222;
+  color: #000;
+  background-color: #fff;
+  margin-top: 120px;
+}
+
+a {
+  text-decoration: none;
+}
+
+pre {
+  margin: 30px 0 30px 0;
+  text-align: left;
+}
+
+/*
+/* Landing Page
+ */
+.background-attach {
+  width: 100%; 
+  opacity: 1.0; 
+  filter: alpha(opacity=100); 
+    position:relative;
+    overflow:hidden;
+    .background-size(cover);
+  z-index: 0;
+}
+
+
+/*
+ *
+ */
+.well {
+    margin-top:-20px;
+    background-color:#007FBD;
+    border:2px solid #0077B2;
+    text-align:center;
+    cursor:pointer;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 0px !important;
+}
+
+.well:hover {
+    margin-top:-20px;
+    background-color:#0077B2;
+    border:2px solid #0077B2;
+    text-align:center;
+    cursor:pointer;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 0px !important;
+    border-bottom : 2px solid rgba(97, 203, 255, 0.65);
+}
+
+.bg_blur
+{
+    background-image:url('http://data2.whicdn.com/images/139218968/large.jpg');
+    height: 300px;
+    background-size: cover;
+}
+
+.follow_btn {
+    text-decoration: none;
+    position: absolute;
+    left: 35%;
+    top: 42.5%;
+    width: 35%;
+    height: 15%;
+    background-color: #007FBE;
+    padding: 10px;
+    padding-top: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid #007FBE;
+}
+
+.follow_btn:hover {
+    text-decoration: none;
+    position: absolute;
+    left: 35%;
+    top: 42.5%;
+    width: 35%;
+    height: 15%;
+    background-color: #007FBE;
+    padding: 10px;
+    padding-top: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+}
+
+.header{
+    color : #808080;
+    margin-left:10%;
+    margin-top:70px;
+}
+
+.picture{
+    height:150px;
+    width:150px;
+    position:absolute;
+    top: 75px;
+    left:-75px;
+}
+
+.picture_mob{
+    position: absolute;
+    width: 35%;
+    left: 35%;
+    bottom: 70%;
+}
+
+.btn-style{
+    color: #fff;
+    background-color: #007FBE;
+    border-color: #adadad;
+    width: 33.3%;
+}
+
+.btn-style:hover {
+    color: #333;
+    background-color: #3D5DE0;
+    border-color: #adadad;
+    width: 33.3%;
+   
+}
+
+
+@media (max-width: 767px) {
+    .header{
+        text-align : center;
+    }
+    
+    
+    
+    .nav{
+        margin-top : 30px;
+    }
+}
+
+
+/*
+ * Pure CSS 3 fancy separator
+ * See: http://front-back.com/pure-css-3-fancy-separator
+ */
+.or-spacer {
+  margin: 0 0 0 0;
+  width: 100%;
+  position:relative; 
+  
+  .mask { 
+    overflow:hidden; 
+    height:20px; 
+    &:after { 
+      content:''; 
+      display:block; 
+      margin:-25px auto 0;
+      width:100%; 
+      height:25px;  
+      border-radius:125px / 12px;  
+      box-shadow:0 1px 1px #aaa;
+    }
+  }
+  span {
+    width: 150px;
+    height: 50px; 
+    position:absolute; 
+    bottom:100%; 
+    margin-bottom:-25px;
+    left:50%; 
+    margin-left: -75px;
+    border-radius:100%;
+    //box-shadow:0 2px 4px #999;
+    background:white;
+  }
+  span i {
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position:absolute;
+
+    //border-radius:100%;
+    border:1px solid #aaa;
+    
+    text-align:center;
+    line-height:48px;
+    font-style:normal;
+    color:#999;
+  }
+}
+
+// vertical variation
+
+.or-spacer-vertical {
+  display:inline-block;
+  margin-top:100px; 
+  margin-left:100px; 
+  idth:100px; 
+  position:relative; 
+  
+  .mask { 
+    overflow:hidden; width:20px; height:200px; 
+    //outline:1px solid pink;
+  }
+  &.left .mask:after { 
+    content:''; 
+    display:block; 
+    margin-left:-20px;
+    width:20px; height:100%;  
+    border-radius:12px / 125px;  
+    box-shadow:0 0 8px black;
+  }
+  &.right .mask:before { 
+    content:''; 
+    display:block; margin-left:20px;
+    width:20px; height:100%; 
+    border-radius:12px / 125px; 
+    box-shadow:0 0 8px black;
+  }
+}
+
+
+/**
+ * Landing
+ */
+.mbed-landing {
+    position:relative;
+
+    overflow:hidden;
+    background-image: url(https://ununsplash.imgix.net/photo-1415591884736-c6e1849f910b?q=75&fm=jpg&s=950aa1635d0c0650a79b317052b3e6fc);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    text-align: center;
+    .background-size(cover);
+
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+
+    z-index: 0;
+
+    margin-bottom: -40px;
+
+    @media (max-width: 768px) {
+        .background-size(auto 200%);
+    }
+
+    @media (max-width: 480px) {
+        background-attachment: scroll;
+        background-position: 50% 50%!important;
+    }
+}
+
+.mbed-wrapper {
+    position: relative;
+    z-index: 99999;
+    height: auto;
+    padding-bottom: 80px;
+
+    .filter {
+        background: #fff;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        
+        padding: 10%;
+    }
+
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+
+    .btn {
+        color: #fff;
+        .btn-background(#000);
+    }
+
+    h1 {
+        color: #000000;
+    }
+    h3 {
+        color: #000000;
+        line-height: 35px;
+        padding-bottom: 10%;
+    }
+    p {
+        .font(15px, #fff);
+        color: #000000;
+    }
+}
+
+/**
+ * Ghost buttons
+ */
+.input-group-btn .ghost-button {
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 6px;
+  margin-top: 2px;
+  margin-left: 1px;
+}
+.ghost-form {
+  font-size: 16px;
+  display: inline-block;
+  padding: 8px;
+  margin: 2px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  background-color: #fff;
+}
+.ghost-form:focus {
+  border: 1px solid #fff;
+  color: #000;
+  background-color: #fff;
+}
+input[placeholder],
+[placeholder],
+*[placeholder] {
+  color: #000 !important;
+}
+/*==========================================================================================*
+ * Ghost Buttons
+ * See: https://github.com/sixrevisions/css-ghost-buttons
+ *      http://sixrevisions.com/css/ghost-buttons/
+ *==========================================================================================*/
+/*
+ * Basic Ghost Button
+ */
+.ghost-button {
+  font-size: 16px;
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  margin: 2px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  text-decoration: none;
+}
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000;
+}
+
+.ghost-button-inverse {
+  color: #000;
+  border: 1px solid #000;
+}
+.ghost-button-inverse:hover,
+.ghost-button-inverse:active {
+  background-color: #000;
+  color: #fff;
+}
+/*
+ * Rounded Corners
+ */
+.ghost-button-rounded-corners {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+.ghost-button-rounded-corners:hover,
+.ghost-button-rounded-corners:active {
+  background-color: #fff;
+  color: #000;
+}
+/*
+ * Simple Transition Effect
+ */
+.ghost-button-transition {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+.ghost-button-transition:hover,
+.ghost-button-transition:active {
+  background-color: #fff;
+  color: #000;
+  -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+/*
+ * Thick Border
+ */
+.ghost-button-thick-border {
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  padding: 8px;
+  color: #fff;
+  border: 3px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+.ghost-button-thick-border:hover,
+.ghost-button-thick-border:active {
+  background-color: #fff;
+  color: #000;
+  -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+/*
+ * Semi-Transparent Fade
+ */
+.ghost-button-semi-transparent {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+.ghost-button-semi-transparent:hover,
+.ghost-button-semi-transparent:active {
+  background-color: #fff;
+  /* fallback */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: #fff;
+  /* fallback */
+  border-color: rgba(255, 255, 255, 0.4);
+  -webkit-transition: background-color 0.3s ease-in, border-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, border-color 0.3s ease-in;
+}
+/*
+ * Border Color Fade
+ * Blue: #66d8ed
+ */
+.ghost-button-border-color {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: border-color 0.3s ease-out, color 0.3s ease-out;
+  transition: border-color 0.3s ease-out, color 0.3s ease-out;
+}
+.ghost-button-border-color:hover,
+.ghost-button-border-color:active {
+  color: #66d8ed;
+  border-color: #66d8ed;
+  -webkit-transition: border-color 0.4s ease-in, color 0.4s ease-in;
+  transition: border-color 0.4s ease-in, color 0.4s ease-in;
+}
+/*
+ * Full Color Fade
+ * Purple: #9363c4
+ */
+.ghost-button-full-color {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: color 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out;
+}
+.ghost-button-full-color:hover,
+.ghost-button-full-color:active {
+  background-color: #9363c4;
+  border-color: #9363c4;
+  color: #fff;
+  -webkit-transition: color 0.3s ease-in, background-color 0.3s ease-in, border-color 0.3s ease-in;
+  transition: color 0.3s ease-in, background-color 0.3s ease-in, border-color 0.3s ease-in;
+}
+/*
+ * Size Transition Effect
+ */
+.ghost-button-size-transition {
+  display: inline-block;
+  width: 200px;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 auto;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: width 0.3s ease-out, height 0.3s ease-out, line-height 0.3s ease-out;
+  transition: width 0.3s ease-out, height 0.3s ease-out, line-height 0.3s ease-out;
+}
+.ghost-button-size-transition:hover,
+.ghost-button-size-transition:active {
+  width: 220px;
+  height: 45px;
+  line-height: 45px;
+  -webkit-transition: width 0.1s ease-in, height 0.1s ease-in, line-height 0.1s ease-in;
+  transition: width 0.1s ease-in, height 0.1s ease-in, line-height 0.1s ease-in;
+}
+
+
+
+/**
+ * FOOTER
+ */
+
+.icons {
+  list-style-type: none;
+  text-indent: -1.5em;
+}
+
+.icons li [class^="fa"],
+.icons li [class*=" fa-"] {
+  display: inline-block;
+  text-align: center;
+  width: 1em;
+}
+
+#footer {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85em;
+
+  background-color: #555555;
+  color: #eeeeee;
+
+  .container {
+    text-align: left;
+    padding: 5%;
+    display: relative;
+
+    padding: 2%;
+
+    h3 {
+      color: #fff;
+      margin-bottom: 5%;
+    }
+
+    p {
+      line-height: 150%;
+      margin-bottom: 1.2em;
+    }
+
+    ul {
+      a {
+        color: #eee;
+      }
+
+      a:hover {
+        color: #666;
+      }
+    }
+  }
+
+  #copyright {
+    posotion: relative;
+    background-color: #222;
+
+    margin: 0;
+    padding-top: 10px;
+    padding-right: 5%;
+
+    text-align: right;
+
+    p {
+      color: #999;
+      font-size: 1em;
+    }
+  }
+}
+
+.book .bookextra {
+    padding: 0;
+    list-style: none;
+}
+.book .bookextra li {
+    padding: 6px 0 6px 0;
+    border-bottom: 1px dotted #D5D5D5;
+
+  [class*="fa"] {
+    display: inline-block;
+  }
+
+  ::first-letter {
+    font-size: 25px;
+    padding-right: 8px;
+  }
+}
+.book .bookextra li:last-child {
+    border-bottom: none;
+}
+.book .bookextra li strong {
+    font-family:'Montserrat', sans-serif;
+    display: inline-table;
+    vertical-align: middle;
+    width: 30%;
+    letter-spacing: -0.5px;
+}
+.book .bookextra li i {
+    font-family:'Oxygen', sans-serif;
+    display: inline-table;
+    width: 68%;
+    font-style: normal;
+}

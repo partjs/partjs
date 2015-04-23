@@ -1,0 +1,39 @@
+extends ../layouts/default
+
+block fb_meta
+  meta(property='og:site_name', content='PartJS')
+  meta(property='og:title', content='Full Stack Boilerplates')
+  meta(property='og:url', content='#{currentURL("")}')
+  meta(property='og:image', content='')
+  meta(property='article:published_time', content='')
+  
+block head
+  title #{projectName}
+
+block neck
+  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/elements/build/bundle.js?#{cacheBreaker}')
+
+block body
+  section#landing
+    img.background-attach(src='/images/gallery/mac-glasses.jpg')
+    .row
+      .col-md-8
+        div.pull-right(style='background: #999; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
+          h1(style='font-size:58px;') PartJS
+          p
+            | A single-page application boilerplate suite that can be reused in new applications.
+
+  section
+    .container(style='margin-top: 20px; margin-bottom: 20px;')
+      .row
+        .col-md-4#news
+
+
+  script(type='text/template', id='tmpl-news')
+    a.text-center(href='#')
+      img.img-responsive(style='margin:0;', src='http://lorempixel.com/800/533/?1')
+      .info
+        h2 Course Conference

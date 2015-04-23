@@ -1,5 +1,6 @@
 bower_components/*
 public/vendor/*
+!public/vendor/flatui
 node_modules/*
 !node_modules/drywall-sendmail
 !node_modules/drywall-slugify
@@ -9,3 +10,4 @@ node_modules/*
 *.min.css
 /config.js
 .nodemonignore
+.DS_Store

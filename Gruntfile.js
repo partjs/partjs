@@ -3,6 +3,9 @@ var path = require('path');
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    FOREVER_DIR: '${HOME}/.forever',
+    PIDFILE: '<%=FOREVER_DIR%>/<%= pkg.name %>.pid',
+    LOGFILE: '<%=FOREVER_DIR%>/<%= pkg.name %>.log',
     copy: {
       vendor: {
         files: [
@@ -80,6 +83,13 @@ module.exports = function(grunt) {
           'public/less/**/*.less'
          ],
          tasks: ['newer:less']
+      },
+      partjsLess: {
+         files: [
+          'public/vendor/flatui/less/modules/partjs.less',
+          'public/vendor/flatui/less/modules/partjs-ui.less'
+         ],
+         tasks: ['less:development']
       }
     },
     uglify: {
@@ -174,6 +184,11 @@ module.exports = function(grunt) {
           dest: 'public/views/',
           ext: '.min.css'
         }]
+      },
+      development: {
+          files: {
+              'public/css/flat-ui.min.css': 'public/vendor/flatui/less/flat-ui.less'
+          }
       }
     },
     clean: {
@@ -194,6 +209,14 @@ module.exports = function(grunt) {
       vendor: {
         src: ['public/vendor/**']
       }
+    },
+    exec: {
+        start_server: {
+            cmd: 'if [ ! -f <%=PIDFILE%> ]; then touch <%=PIDFILE%> && PORT=3000 NODE_ENV=production forever start -p <%=FOREVER_DIR%> -l <%= pkg.name %>.log -c "node --max-old-space-size=8192 --nouse-idle-notification" -a app.js; else echo "Can\'t start <%= pkg.name %>: <%= pkg.name %> is already running."; fi'
+        },
+        stop_server: {
+            cmd: 'if [ -f <%=PIDFILE%> ]; then rm -f <%=PIDFILE%> && forever stop app.js; else echo "Can\'t stop <%= pkg.name %>: <%= pkg.name %> is not running."; fi'
+        }
     }
   });
 
@@ -206,8 +229,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-newer');
+  grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('default', ['copy:vendor', 'newer:uglify', 'newer:less', 'concurrent']);
   grunt.registerTask('build', ['copy:vendor', 'uglify', 'less']);
   grunt.registerTask('lint', ['jshint']);
+
+  grunt.registerTask('start', ['exec:start_server']);
+  grunt.registerTask('stop', ['exec:stop_server']);
 };

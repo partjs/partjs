@@ -1,0 +1,49 @@
+extends layouts/default_sensor
+
+block fb_meta
+  meta(property='og:site_name', content='PartJS')
+  meta(property='og:title', content='Next generation WoT and SPA.')
+  meta(property='og:url', content='#{currentURL("")}')
+  meta(property='og:image', content='')
+  meta(property='article:published_time', content='')
+  
+block head
+  title Next Generation WoT and SPA Framework
+
+block neck
+  link(rel='stylesheet', href='/vendor/css3_bar_chart/css/style.css')
+
+block feet
+  script(src='/views/build/sensor.js')
+
+block body
+  .container
+    .row
+      .col-md-3
+      .col-md-2#demo-spot
+      .col-md-3
+        ul#bar
+          li#good
+            .top
+            .bottom
+              .infobox
+                h3 Good
+          li#normal
+            .top
+            .bottom
+              .infobox
+                h3 Normal
+          li#danger
+            .top
+            .bottom
+              .infobox
+                h3 Danger
+
+  script(type='text/template', id='tmpl-spot-news')
+    ul#bar(data-cid!='<%= cid %>')
+      li#current
+        .top.text-center
+          .infobox
+            h3(style='padding-top: 150px;') <%= lowpulseoccupancytime %>
+        .bottom
+          .infobox

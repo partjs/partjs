@@ -2,23 +2,93 @@ extends layouts/default
 
 block fb_meta
   meta(property='og:site_name', content='PartJS')
-  meta(property='og:title', content='Full Stack Boilerplates')
+  meta(property='og:title', content='Next generation WoT and SPA.')
   meta(property='og:url', content='#{currentURL("")}')
   meta(property='og:image', content='')
   meta(property='article:published_time', content='')
   
 block head
-  title #{projectName}
+  title Next Generation WoT and SPA Framework
 
 block neck
-  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/build/sandbox.js')
+  //- script(src='/views/build/index.js')
 
 block body
-  section#landing
-    img.background-attach(src='/images/gallery/mac-glasses.jpg')
-    .row
-      .col-md-8
-        div.pull-right(style='background: #fcfcfc; padding: 30px 90px 60px 30px; opacity: 0.8; filter: alpha(opacity=80); margin-top: -450px;')
-          h1(style='font-size:58px;') PartJS
-          p
-            | A single-page application boilerplate suite that can be reused in new applications.
+
+  section
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
+      .row
+        .col-md-8.col-md-offset-2.text-center
+          h2(style='margin-bottom: 50px;') Next Generation WoT and SPA Framework
+          h3(style='margin-left: 15%; margin-bottom: 30px; font-weight: 300; line-height: 40px; text-align: left;') 
+            span(style='font-weight: 300;') var Elements = require('partjs-elements');
+            br
+            | var component = new Elements.Spot( ... );
+            br
+            | component.add( ... );
+            br
+            | component.add( ... );
+
+  section
+    .container(style='width: 80%;')
+      .or-spacer
+        .mask
+          |   
+          span
+            i Components
+
+  section
+    .container(style='margin-top: 30px; margin-bottom: 80px;')
+      .row
+        .col-md-6.col-md-offset-3.text-center
+          h2(style='margin-bottom: 30px;') Spot
+          p A photo background square box that just display a heading with a hyperlink.
+          pre
+            | /* How to composite a Spot element. */
+            | 
+            | // Step 1: Require partjs elements.
+            | var Elements = require('partjs-elements');
+            | 
+            | // Step 2: Create an element instance and bind data.
+            | this.widget = new Elements.Spot({
+            |   // backbone element
+            |   el: this.$el, 
+            |   // backbone data model
+            |   model: app.SpotNews, 
+            |   // backbone collection
+            |   collection: app.SpotNewsCollection, 
+            |   // underscore template
+            |   template: this.template 
+            | });
+            | 
+            | // Step 3: Add a new data model to element instance.
+            | // * This will internally create the different model instances 
+            | // * and composite UI.
+            | this.widget.add({
+            |   title: 'Coders', 
+            |   href: 'https://www.mokoversity.com/coders',
+            |   img: '//static.mokoversity.com/images/gallery/spot-course.jpg'
+            | });
+            | this.widget.add({
+            |   title: 'Makers', 
+            |   href: 'https://www.mokoversity.com/makers',
+            |   img: '//static.mokoversity.com/images/gallery/spot-online.jpg'
+            | });
+            | this.widget.add({
+            |   title: 'Training', 
+            |   href: 'https://www.mokoversity.com/camp/full-stack',
+            |   img: '//static.mokoversity.com/images/gallery/spot-training.jpg'
+            | });
+      section.spot-box
+        .row.text-center#demo-spot
+          //- a.ghost-button.ghost-button-inverse#btn-demo-spot(href='#') Run
+
+  script(type='text/template', id='tmpl-spot-news')
+    .col-md-4
+      a.text-center.btn-spot-news(href!='#', data-cid!='<%= cid %>')
+        img.img-responsive(src!='<%= img %>')
+        .info
+          h2 <%= city %> / <%= temp %>°C

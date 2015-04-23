@@ -14,5 +14,6 @@
     "fullpage": "~2.4.3",
     "jqueryui": "~1.11.2",
     "screenfull": "~1.2.1"
+    "flatui": "*"
   }
 }

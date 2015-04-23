@@ -169,6 +169,8 @@ exports = module.exports = function(app, passport) {
   app.get('/post*', require('./views/post/index').init);
   app.get('/unsplash*', require('./views/unsplash/index').init);
   app.get('/about', require('./views/index').about);  
+  app.get('/sensor', require('./views/index').sensor);  
+  app.get('/dashboard', require('./views/index').dashboard);  
 
   // partjs >> Forms
   app.get('/1/post', require('./views/api/post').readAll);
@@ -181,6 +183,9 @@ exports = module.exports = function(app, passport) {
   app.delete('/1/post/:id', ensureAuthenticated);
   app.delete('/1/post/:id', ensureAdmin);  
   app.delete('/1/post/:id', require('./views/api/post').delete); 
+
+  // Test Case
+  app.get('/1/sandbox/weather/:city', require('./views/api/sandbox').weather);
 
   //route not found
   app.all('*', require('./views/http/index').http404);

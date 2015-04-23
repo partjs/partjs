@@ -29,6 +29,7 @@ app.db.once('open', function () {
 //config data models
 require('./models')(app, mongoose);
 
+
 //setup the session store
 app.sessionStore = new mongoStore({ url: config.mongodb.uri });
 

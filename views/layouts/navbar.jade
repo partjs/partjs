@@ -1,25 +1,10 @@
-div.navbar.navbar-default.navbar-fixed-top
-  div.container
-    div.navbar-header
-      a.navbar-brand(href='/')
-        img.navbar-logo(src='')
-        span.navbar-brand-label #{projectName}
-      button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-    div.navbar-collapse.my-navbar-collapse.collapse
-      ul.nav.navbar-nav
-        li: a(href='/') Home
-        li: a(href='/about/') About
-        li: a(href='/signup/') Sign Up
-        li: a(href='/contact/') Contact
-      ul.nav.navbar-nav.navbar-right
-        if user && user.username
-          li: a(href='#{user.defaultReturnUrl}')
-            i.fa.fa-user
-            |  #{user.username}
-        else
-          li: a(href='/login/')
-            i.fa.fa-user
-            |  Sign In
+nav.navbar.navbar-fixed-top#main-menu(role='navigation', style='opacity: 0.9')
+  .navbar-header
+    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    h1.navbar-brand(href='/')
+      span(style='font-weight: bold; font-size: 2.5em;') part
+      span js
+  .navbar-collapse.collapse.pull-right

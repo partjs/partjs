@@ -1,0 +1,42 @@
+/**
+ * PartJS UI.
+ */
+@import '../../../../less/bootstrap-vars.less';
+@import '../../../../less/partjs-mixins.less';
+
+
+/*
+ * UI Pattern - Spot Box
+ */
+.spot-box {	
+	a, span, p {
+		// See: http://css-tricks.com/forums/topic/automatically-fit-the-div-to-the-inner-content/
+		display: inline-block;
+		margin-top: 30px;
+
+		img {
+			border-radius: 7px 7px 7px 7px;
+			display: block;
+		}
+		.info {
+			margin-top: -80px;
+		
+			h2 {
+				color: #fff;
+				font-size: 24px;
+				font-weight: normal;
+				text-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+			}
+			h3 {
+			    background-color: #000;
+			    opacity: 0.7;
+			    padding: 5%;    
+
+				color: #fff;
+				font-size: 18px;
+				font-weight: normal;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
+			}
+		}
+	}
+}
