@@ -1,0 +1,52 @@
+extends ./layout/fullPage
+
+block head
+  title #{projectTitle}
+
+block neck
+  //- Common
+  link(href='#{cdnServer}/vendor/fullPage/jquery.fullPage.css', rel='stylesheet')
+
+  //- App
+  link(href='#{cdnServer}/views/unsplash/examples.css', rel='stylesheet')
+
+block feet
+  //- Common
+  script(src='#{cdnServer}/vendor/jquery/dist/jquery.min.js')
+  script(src='#{cdnServer}/vendor/jqueryui/jquery-ui.min.js')
+  script(src='#{cdnServer}/vendor/fullPage/jquery.fullPage.min.js')
+  script(src='#{cdnServer}/vendor/screenfull/dist/screenfull.min.js')
+
+  //- App
+  script(src='#{cdnServer}/views/unsplash/examples.js')
+
+block heading
+
+block body
+  div#fullpage
+
+    div.section#section-background-fixed-0
+      .block-0
+        h1 Koyto
+    div.section#section-background-fixed-5
+
+    div.section#section-background-fixed-4
+
+    div.section#section-background-fixed-1
+      .block-0
+        h1 Koyto
+    div.section#section-background-fixed-2
+
+    div.section#section-background-fixed-3
+      .block-1
+        p Kyoto Japan Trip
+        p 日本京都之旅
+        p 京都日本の旅
+        p 교토 일본 여행
+        p &nbsp;
+        p Oct. 2014. Yii and Jollen.
+        p &nbsp;
+        span This work is under the&nbsp;
+          a(href='https://unsplash.com/license') Unsplash license
+          | .&nbsp;
+        span yii@jollen.org

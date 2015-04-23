@@ -105,6 +105,12 @@ app.configure(function(){
       next();
   });
 
+  // partjs configs
+  app.use(function(req, res, next) {
+    res.locals.cdnServer = '';
+    next();
+  });
+
   //mount the routes
   app.use(app.router);
 

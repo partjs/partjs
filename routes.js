@@ -164,12 +164,13 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/google/callback/', require('./views/account/settings/index').connectGoogle);
   app.get('/account/settings/google/disconnect/', require('./views/account/settings/index').disconnectGoogle);
 
-  // Full Element 
+  // partjs boilerplate
   app.get('/timeline*', require('./views/timeline/index').init);
   app.get('/post*', require('./views/post/index').init);
+  app.get('/unsplash*', require('./views/unsplash/index').init);
   app.get('/about', require('./views/index').about);  
 
-  // Full Element >> Forms
+  // partjs >> Forms
   app.get('/1/post', require('./views/api/post').readAll);
   app.post('/1/post', require('./views/api/post').create);
   app.post('/1/post/query', require('./views/api/post').createByQuery);
