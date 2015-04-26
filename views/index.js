@@ -15,3 +15,7 @@ exports.dashboard = function(req, res){
 exports.about = function(req, res){
   res.render('about');
 };
+
+exports.landing = function(req, res){
+  res.render('landing');
+};

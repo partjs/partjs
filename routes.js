@@ -171,6 +171,7 @@ exports = module.exports = function(app, passport) {
   app.get('/about', require('./views/index').about);  
   app.get('/sensor', require('./views/index').sensor);  
   app.get('/dashboard', require('./views/index').dashboard);  
+  app.get('/landing', require('./views/index').landing);  
 
   // partjs >> Forms
   app.get('/1/post', require('./views/api/post').readAll);
