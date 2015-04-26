@@ -1,0 +1,19 @@
+.cell  {
+	background: #5ac9aa 0 0;
+	border-style: solid;
+	border-color: #fff;
+	text-align: center;
+	visibility: visible;
+	overflow: hidden;
+	z-index: 100;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+.cell i {
+	font-size: 5em;
+	display: block;
+	line-height: 2.5em;
+	color: #ffffff;
+}

@@ -183,6 +183,12 @@ module.exports = function(grunt) {
           src: ['**/*.less'],
           dest: 'public/views/',
           ext: '.min.css'
+        },{
+          expand: true,
+          cwd: 'public/views/',
+          src: ['*.css'],
+          dest: 'public/views/',
+          ext: '.min.css'
         }]
       },
       development: {
