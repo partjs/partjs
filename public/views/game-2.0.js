@@ -5,8 +5,17 @@
 
   var app = {};
 
+  app.Contact = Backbone.Model.extend({
+    url: '/1/game',
+    defaults: {
+      you: 0,
+      me: 0
+    }
+  });
+
   app.ContactView = Backbone.View.extend({
     el: '#game',
+    template: _.template( $('#tmpl-score').html() ),
     count: 0,
     n: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     compute: [0, 0, 0, 0, 0, 0, 0, 0],
@@ -15,9 +24,14 @@
       'click .cell': 'cell'
     },
     initialize: function() {
-      this.render();
+      this.model = new app.Contact();
+      this.listenTo(this.model, 'sync', this.render);
+      this.listenTo(this.model, 'change', this.render);
+      this.model.fetch();
     },
     render: function() {
+      this.$el.append(this.template( this.model.attributes ));
+
       var self = this;
       setInterval(function() {
         // 0 to 8
@@ -60,11 +74,23 @@
       this.compute[6] = this.n[2] + this.n[4] + this.n[6];
       this.compute[7] = this.n[0] + this.n[4] + this.n[8];
 
-      if (this.compute.indexOf(3) !== -1)
-        alert('You Win');
+      if (this.compute.indexOf(3) !== -1) {
+        var you = this.model.get('you');
 
-      if (this.compute.indexOf(-3) !== -1)
-        alert('I Win');
+        this.model.set('you', you + 1);
+        this.model.save(); // POST
+        
+        this.$el.html("");
+      }
+
+      if (this.compute.indexOf(-3) !== -1) {
+        var me = this.model.get('me');
+        
+        this.model.set('me', me + 1);
+        this.model.save();
+
+        this.$el.html("");
+      }
     }
   });
 

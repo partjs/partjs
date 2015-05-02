@@ -173,6 +173,9 @@ exports = module.exports = function(app, passport) {
   app.get('/dashboard', require('./views/index').dashboard);  
   app.get('/landing', require('./views/index').landing);  
 
+  app.get('/1/game', require('./views/api/game').read);
+  app.post('/1/game', require('./views/api/game').write);
+
   // partjs >> Forms
   app.get('/1/post', require('./views/api/post').readAll);
   app.post('/1/post', require('./views/api/post').create);
