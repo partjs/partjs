@@ -6,7 +6,7 @@
   var app = {};
 
   app.Contact = Backbone.Model.extend({
-    url: '/1/game',
+    url: '/1/game?action=reset',
     defaults: {
       you: 0,
       me: 0
@@ -85,7 +85,7 @@
 
       if (this.compute.indexOf(-3) !== -1) {
         var me = this.model.get('me');
-        
+
         this.model.set('me', me + 1);
         this.model.save();
 

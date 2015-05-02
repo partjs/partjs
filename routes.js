@@ -176,6 +176,8 @@ exports = module.exports = function(app, passport) {
   app.get('/1/game', require('./views/api/game').read);
   app.post('/1/game', require('./views/api/game').write);
 
+  app.get('/1/game/:name', require('./views/api/game').test);
+
   // partjs >> Forms
   app.get('/1/post', require('./views/api/post').readAll);
   app.post('/1/post', require('./views/api/post').create);
