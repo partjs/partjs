@@ -1,0 +1,25 @@
+extends layouts/default
+
+block fb_meta
+  
+block head
+  title Member
+
+block neck
+
+block feet
+  script(src='/vendor/jquery/dist/jquery.min.js')
+  script(src='/vendor/underscore/underscore.js')
+  script(src='/vendor/backbone/backbone.js')
+  script(src='/views/member.js')
+
+block body
+  .container(style='margin-top: 100px;')
+    table.table#member
+
+  script(type='text/template', id='tmpl-member')
+    <% _.each(data, function(person) { %>
+    tr
+      td <%= person.Name %>
+      td <%= person.Phone %>
+    <% }); %>

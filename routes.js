@@ -173,6 +173,9 @@ exports = module.exports = function(app, passport) {
   app.get('/dashboard', require('./views/index').dashboard);  
   app.get('/landing', require('./views/index').landing);  
 
+  app.get('/member', require('./views/member/index').init);  
+
+
   app.get('/1/game', require('./views/api/game').read);
   app.post('/1/game', require('./views/api/game').write);
 

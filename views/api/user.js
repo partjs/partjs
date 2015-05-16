@@ -10,6 +10,6 @@ exports.read = function(req, res){
   	filter['$text'] = { $search: name };
 
   req.app.db.models.Member.find(filter, function(err, users) {
-    res.json(users);
+    res.json({ data: users });
   });
 };
