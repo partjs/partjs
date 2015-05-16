@@ -16,4 +16,7 @@ exports = module.exports = function(app, mongoose) {
 
   // Full Element
   require('./schema/Post')(app, mongoose);
+  require('./schema/Game')(app, mongoose);
+  require('./schema/Member')(app, mongoose);
 };
+

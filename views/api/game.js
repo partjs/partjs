@@ -6,14 +6,16 @@ var score = {
 exports.read = function(req, res){
   var action = req.query.action;
 
-  res.json(score);
+  req.app.db.models.Game.find({ me: 1}, function(err, scores) {
+    res.json(scores);
+  });
 };
 
 exports.write = function(req, res){
-  var action = req.query.action;
+  var score = req.body;
 
-  score = req.body;
-  res.json(score);
+  var document = new req.app.db.models.Game(score);
+  document.save();
 };
 
 exports.test = function(req, res){
