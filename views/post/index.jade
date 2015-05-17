@@ -4,8 +4,13 @@ block head
   title #{projectTitle} | #{projectName}
 
 block neck
+  link(rel='stylesheet', href='/vendor/bootstrap-datepicker/css/datepicker.css')
 
 block feet
+  script(src='/vendor/jquery/dist/jquery.min.js')
+  script(src='/vendor/underscore/underscore.js')
+  script(src='/vendor/backbone/backbone.js')
+  script(src='/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')
   script(src='/views/post/index.js')
 
 block heading

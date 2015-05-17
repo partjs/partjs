@@ -17,7 +17,7 @@ exports.read = function(req, res){
 exports.readById = function(req, res){
   var id = req.params.id;
 
-  req.app.db.models.Member.findOne({ _id: id}, function(err, user) {
+  req.app.db.models.Member.find({ _id: id }, function(err, user) {
     res.json(user);
   });
 };
