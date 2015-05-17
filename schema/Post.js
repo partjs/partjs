@@ -16,11 +16,7 @@ exports = module.exports = function(app, mongoose) {
         // update date
         date: { type: Date, default: Date.now },
 
-        userCreated: {
-            id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            name: { type: String, default: '' },
-            time: { type: Date, default: Date.now } // create date
-        }       
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Member' },
     });
 
     postSchema.plugin(require('./plugins/pagedFind'));

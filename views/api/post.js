@@ -44,16 +44,15 @@ exports.create = function(req, res, next) {
     });
 
     workflow.on('saveNewPost', function() {
+        var mongoose = require('mongoose');
+        
         var fieldsToSet = {
             organizer: req.body.organizer.trim(),
             title: req.body.title.trim(),
             url: req.body.url.trim(),
             typeTags: req.body.typeTags.split(','),
             startDate: req.body.startDate,
-            userCreated: {
-                name: 'Default',
-                time: new Date().toISOString()
-            }
+            userId: mongoose.Types.ObjectId('5556e2c9149beb260f90ab10')
         };
 
         new req.app.db.models.Post(fieldsToSet).save(function(err) {
@@ -94,11 +93,7 @@ exports.createByQuery = function(req, res, next) {
             title: req.query.title.trim(),
             url: req.query.url.trim(),
             typeTags: req.query.typeTags.split(','),
-            startDate: req.query.startDate,
-            userCreated: {
-                name: 'Default',
-                time: new Date().toISOString()
-            }
+            startDate: req.query.startDate
         };
 
         new req.app.db.models.Post(fieldsToSet).save(function(err) {
