@@ -13,3 +13,11 @@ exports.read = function(req, res){
     res.json({ data: users });
   });
 };
+
+exports.readById = function(req, res){
+  var id = req.params.id;
+
+  req.app.db.models.Member.findOne({ _id: id}, function(err, user) {
+    res.json(user);
+  });
+};

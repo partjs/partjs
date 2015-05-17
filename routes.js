@@ -184,6 +184,7 @@ exports = module.exports = function(app, passport) {
 
   // Users
   app.get('/1/member', require('./views/api/user').read);
+  app.get('/1/member/:id', require('./views/api/user').readById);
 
 
   // partjs >> Forms

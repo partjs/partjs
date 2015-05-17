@@ -21,5 +21,8 @@ block body
     <% _.each(data, function(person) { %>
     tr
       td <%= person.Name %>
+        br
+        <%= person._id %>
       td <%= person.Phone %>
+      td <%= person.Address %>
     <% }); %>
